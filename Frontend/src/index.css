@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+.light {
+  --bodybg: #fefae0;
+  --navbg: #d4a373;
+  --navtxt: #404f0d;
+  --navbtn: #fefae0;
+  --demohead: #c2ca86;
+  --cardbg: #faedcd;
+  --cardshadow: #e4af5a;
+  --cardttl: #34400c;
+  --carddscp: #8a9156;
+  --cardbtn: #c77625;
+  --dialoginp: #35612a;
+}
+/* night mode */
+.dark {
+  --bodybg: #1a1a14;
+  --navbg: #3b2a1a;
+  --navtxt: #e9e7d1;
+  --navbtn: #fefae0;
+  --demohead: #b4d153;
+  --cardbg: #2a2a1f;
+  --cardshadow: #d6cebcc4;
+  --cardttl: #e9edc9;
+  --carddscp: #b7b97a;
+  --cardbtn: #d68b3d;
+  --dialoginp: #c2ca86;
+}
