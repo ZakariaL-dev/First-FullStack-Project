@@ -8,6 +8,12 @@ import {
   ToggleDialogContext,
   ToggleUpdateContext,
 } from "./Context/ToggleDialogContext";
+import Login from "./Components/LogIn";
+import Signup from "./Components/SignUP";
+
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./Components/Home";
+import ProtectedRoutes from "./utils/ProtectedRoutes";
 
 function App() {
   const [Theme, setTheme] = useState("light");
@@ -18,9 +24,20 @@ function App() {
       <div className={`${Theme} bg-[var(--bodybg)] relative min-h-screen `}>
         <ToggleDialogContext.Provider value={{ Show, setShow }}>
           <ToggleUpdateContext.Provider value={{ ShowUpdate, setShowUpdate }}>
-            <NavBar />
-            <AddDemoDialog />
-            <DemoDisplay />
+            {/*  */}
+            <Router>
+              <NavBar />
+              <AddDemoDialog />
+              <Routes>
+                <Route exact path="/" element={<Home />} />
+                <Route exact path="/login" element={<Login />} />
+                <Route exact path="/signup" element={<Signup />} />
+                <Route element={<ProtectedRoutes />}>
+                  <Route exact path="/demostore" element={<DemoDisplay />} />
+                </Route>
+              </Routes>
+            </Router>
+            {/*  */}
           </ToggleUpdateContext.Provider>
         </ToggleDialogContext.Provider>
       </div>

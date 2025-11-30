@@ -1,9 +1,12 @@
-import Demo from "../models/demo.model.js";
+import { getDemoModel } from "../models/demo.model.js";
 import mongoose from "mongoose";
+
+//
 
 // getting all demos
 export const getAllDemos = async (req, res) => {
   try {
+    const Demo = getDemoModel();
     const demos = await Demo.find({});
     res.status(201).json({ success: true, Backdata: demos });
   } catch (error) {
@@ -20,6 +23,7 @@ export const GetDemo = async (req, res) => {
     return res.send(404).json({ success: false, message: "Invalid id demo" });
   }
   try {
+    const Demo = getDemoModel();
     const DemoFind = await Demo.find({ _id: id });
     res
       .status(201)
@@ -38,6 +42,7 @@ export const CreateNewDemo = async (req, res) => {
       .status(404)
       .json({ success: false, message: "Please provide all fields !!!" });
   }
+  const Demo = getDemoModel();
   const newDemo = new Demo(demo);
   try {
     await newDemo.save();
@@ -57,6 +62,7 @@ export const UpdateDemo = async (req, res) => {
     return res.send(404).json({ success: false, message: "Invalid id demo" });
   }
   try {
+    const Demo = getDemoModel();
     const updatedDemo = await Demo.findByIdAndUpdate(id, demo, { new: true });
     res
       .status(201)
@@ -76,14 +82,13 @@ export const DeleteDemo = async (req, res) => {
   }
 
   try {
+    const Demo = getDemoModel();
     await Demo.findByIdAndDelete(id);
     res.status(201).json({ success: true, message: "Demo delted" });
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        success: false,
-        message: `Error in deleting demo: ${error.message}`,
-      });
+    res.status(500).json({
+      success: false,
+      message: `Error in deleting demo: ${error.message}`,
+    });
   }
 };

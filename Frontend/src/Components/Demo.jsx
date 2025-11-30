@@ -19,7 +19,7 @@ const Demo = ({ demo, triggerDeleteSnack, onEditClick }) => {
   return (
     <>
       <div className="rounded-xl bg-[var(--cardbg)] shadow-[0_4px_7px_1px_var(--cardshadow)] overflow-hidden mb-6 transition-all ease-in-out hover:-translate-y-1.5">
-        <img src={demo.Image} alt={demo.Title} className="w-full max-h-[70%]" />
+        <img src={demo.Image} alt={demo.Title} className="w-full max-h-[60%]" />
         <div className="w-full px-6 mt-4">
           <h5 className="text-xl font-bold font-manrope text-[var(--cardttl)] mb-2">
             {demo.Title}

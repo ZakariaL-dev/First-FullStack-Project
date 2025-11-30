@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { ConnectDemoDB } from "../config/db.js";
 
 const DemoSchema = new mongoose.Schema(
   {
@@ -21,5 +22,12 @@ const DemoSchema = new mongoose.Schema(
   }
 );
 
-const Demo = mongoose.model("Demo", DemoSchema);
-export default Demo;
+export const getDemoModel = () => {
+  if (ConnectDemoDB && ConnectDemoDB.models && ConnectDemoDB.models.Demo) {
+    return ConnectDemoDB.models.Demo;
+  }
+  if (!ConnectDemoDB) {
+    throw new Error("Demo DB connection is not yet established.");
+  }
+  return ConnectDemoDB.model("Demo", DemoSchema);
+};
